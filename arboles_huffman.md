@@ -2,7 +2,7 @@
 
 ## ¿Qué son los Árboles de Huffman?
 
-Los **Árboles de Huffman** son estructuras de datos arbóreas utilizadas en ciencias de la computación para implementar la **codificación de Huffman**, un algoritmo de compresión de datos sin pérdida muy eficiente.
+Los **Árboles de Huffman** son estructuras de datos arbóreas utilizadas en la computacion para implementar la **codificación de Huffman**, un algoritmo de compresión de datos sin pérdida que lo hace muy eficiente.
 
 ## Características Principales
 
@@ -102,4 +102,4 @@ función construirArbolHuffman(frecuencias):
 
 ## Conclusión
 
-Los Árboles de Huffman son una herramienta fundamental en la compresión de datos, ofreciendo un equilibrio excelente entre simplicidad y eficiencia. Su algoritmo greedy garantiza una solución óptima para la codificación de longitud variable, lo que los hace indispensables en muchas aplicaciones modernas de procesamiento de información.
+Los Árboles de Huffman son una herramienta fundamental en la compresión de datos porque nos esta ofreciendo un equilibrio excelente entre simplicidad y eficiencia. Su algoritmo greedy garantiza una solución óptima para la codificación de longitud variable lo que les hace indispensables en muchas aplicaciones de la actualidad de procesamiento de información.
