@@ -7,20 +7,20 @@ Los **Árboles de Huffman** son estructuras de datos arbóreas utilizadas en cie
 ## Características Principales
 
 - **Estructura de árbol binario**: Cada nodo tiene como máximo dos hijos
-- **Árbol con peso**: Cada nodo hoja contiene un símbolo y su frecuencia de aparición
+- **Árbol con peso**: cada nodo hoja contiene un símbolo y su frecuencia de aparición
 - **Árbol óptimo**: Minimiza la longitud promedio del código resultante
 - **Construcción de abajo hacia arriba**: Se construye comenzando por los símbolos menos frecuentes
 
 ## ¿Cómo funciona?
 
-### Algoritmo de Construcción
+### Construccion de Algoritmo
 
 1. **Crear nodos hoja**: Se crea un nodo para cada símbolo con su frecuencia
 2. **Construir el árbol**: Se combinan repetidamente los dos nodos con menor frecuencia
 3. **Asignar códigos**: Se recorre el árbol asignando 0 para la rama izquierda y 1 para la derecha
 4. **Generar tabla de códigos**: Cada símbolo obtiene un código único de longitud variable
 
-### Ejemplo Simple
+### Ejemplo normalito
 
 Supongamos que tenemos el texto: "AAABBC"
 
@@ -47,10 +47,10 @@ Supongamos que tenemos el texto: "AAABBC"
 
 ## Ventajas
 
-**Compresión eficiente**: Reduce significativamente el tamaño de archivos  
-**Óptimo**: Genera códigos de longitud mínima  
+**Compresión eficiente**: Reduce significativamente el tamaño d archivos  
+**Óptimo**: Genera códigos d longitud minima  
 **Rápido**: O(n log n) en tiempo de construcción  
- **Sin pérdida**: Permite recuperar los datos originales perfectamente  
+ **Sin pérdida**: Permite la recuperacion de datos originales 
 
 ## Desventajas
 
@@ -64,7 +64,7 @@ Supongamos que tenemos el texto: "AAABBC"
 - **Transmisión de datos**: Comunicaciones comprimidas
 - **Códigos de barras y QR**: Almacenamiento eficiente
 - **Redes y telecomunicaciones**: Reducción de ancho de banda
-- **Formatos multimedia**: JPEG, MP3, y otros estándares
+- **Formatos multimedia**: JPEG, MP3, etc...
 
 ## Comparación con Otros Métodos
 
