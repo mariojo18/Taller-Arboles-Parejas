@@ -1,89 +1,121 @@
-# Gabriel Zambrano Herazo 2250944 - Mario Moreno Ramirez 2250941
-class NodoArbol:
+# Gabriel Zambrano Herazo 220944 - Mario Moreno Ramirez 2250941
+class Nodo:
     def __init__(self, valor):
         self.valor = valor
-        self.izquierdo = None
-        self.derecho = None
+        self.hijos = []
 
-class ArbolBinario:
+class Arbol:
     def __init__(self):
         self.raiz = None
 
-    def insertar(self, valor):
+    def insertar(self, valor, padre):
+        nuevo_nodo = Nodo(valor)
+        
         if self.raiz is None:
-            self.raiz = NodoArbol(valor)
-        else:
-            self._insertar_recursivo(self.raiz, valor)
+            self.raiz = nuevo_nodo
+            return
+        
+        nodo_padre = self.buscar(self.raiz, padre)
+        if nodo_padre:
+            nodo_padre.hijos.append(nuevo_nodo)
 
-    def _insertar_recursivo(self, nodo, valor):
-        if valor < nodo.valor:
-            if nodo.izquierdo is None:
-                nodo.izquierdo = NodoArbol(valor)
-            else:
-                self._insertar_recursivo(nodo.izquierdo, valor)
-        elif valor > nodo.valor:
-            if nodo.derecho is None:
-                nodo.derecho = NodoArbol(valor)
-            else:
-                self._insertar_recursivo(nodo.derecho, valor)
+    def buscar(self, nodo_actual, valor_buscado):
+        if nodo_actual is None:
+            return None
+        if nodo_actual.valor == valor_buscado:
+            return nodo_actual
+        for cada_hijo in nodo_actual.hijos:
+            resultado = self.buscar(cada_hijo, valor_buscado)
+            if resultado:
+                return resultado
+        return None
 
     def peso(self):
-        return self._contar_nodos(self.raiz)
+        return self.contar(self.raiz)
 
-    def _contar_nodos(self, nodo):
-        if nodo is None:
+    def contar(self, nodo_actual):
+        if nodo_actual is None:
             return 0
-        return 1 + self._contar_nodos(nodo.izquierdo) + self._contar_nodos(nodo.derecho)
+        total_nodos = 1
+        for cada_hijo in nodo_actual.hijos:
+            total_nodos = total_nodos + self.contar(cada_hijo)
+        return total_nodos
 
     def orden(self):
-        resultado = []
-        self._inorden(self.raiz, resultado)
-        return resultado
+        return self.max_hijos(self.raiz)
 
-    def _inorden(self, nodo, resultado):
-        if nodo is not None:
-            self._inorden(nodo.izquierdo, resultado)
-            resultado.append(nodo.valor)
-            self._inorden(nodo.derecho, resultado)
+    def max_hijos(self, nodo_actual):
+        if nodo_actual is None:
+            return 0
+        mayor_cantidad = len(nodo_actual.hijos)
+        for cada_hijo in nodo_actual.hijos:
+            cantidad_hijo = self.max_hijos(cada_hijo)
+            if cantidad_hijo > mayor_cantidad:
+                mayor_cantidad = cantidad_hijo
+        return mayor_cantidad
 
     def altura(self):
-        return self._calcular_altura(self.raiz)
+        return self.calc_altura(self.raiz)
 
-    def _calcular_altura(self, nodo):
-        if nodo is None:
+    def calc_altura(self, nodo_actual):
+        if nodo_actual is None:
             return -1
-        altura_izq = self._calcular_altura(nodo.izquierdo)
-        altura_der = self._calcular_altura(nodo.derecho)
-        return 1 + max(altura_izq, altura_der)
+        if len(nodo_actual.hijos) == 0:
+            return 0
+        mayor_altura = 0
+        for cada_hijo in nodo_actual.hijos:
+            altura_hijo = self.calc_altura(cada_hijo)
+            if altura_hijo > mayor_altura:
+                mayor_altura = altura_hijo
+        return 1 + mayor_altura
 
-    def mostrar_en_orden(self):
-        valores = self.orden()
-        print("Árbol en orden:", valores)
+# PROGRAMA
+mi_arbol = Arbol()
 
-
-def main():
-    arbol = ArbolBinario()
-    print("=== Creación del Árbol Binario ===")
-    print("Ingrese valores numéricos (ingrese 'fin' para terminar):")
-    
-    while True:
-        entrada = input("Valor: ")
-        if entrada.lower() == 'fin':
+print("Crear raiz:")
+while True:
+    valor_ingresado = input("Valor: ")
+    es_numero = True
+    for caracter in valor_ingresado:
+        if caracter not in "0123456789-":
+            es_numero = False
             break
-        try:
-            valor = int(entrada)
-            arbol.insertar(valor)
-            print(f"  -> Insertado {valor}")
-        except ValueError:
-            print("  -> Entrada inválida. Ingrese un número o 'fin'")
+    if es_numero:
+        mi_arbol.insertar(int(valor_ingresado), None)
+        break
+    print("Error: numero")
+
+print("\nAgregar nodos (formato: valor,padre)")
+print("Ejemplo: 5,2   Escriba 'fin' para terminar")
+
+while True:
+    entrada_usuario = input("> ")
+    if entrada_usuario == "fin":
+        break
     
-    print("\n=== Información del Árbol ===")
-    print(f"a) Peso del árbol (número de nodos): {arbol.peso()}")
-    orden_valores = arbol.orden()
-    print(f"b) Orden del árbol (recorrido inorden): {orden_valores}")
-    print(f"c) Altura del árbol: {arbol.altura()}")
-    arbol.mostrar_en_orden()
+    partes = entrada_usuario.split(",")
+    if len(partes) != 2:
+        print("Error: use valor,padre")
+        continue
+    
+    texto_valor = partes[0]
+    texto_padre = partes[1]
+    
+    valor_es_numero = True
+    for caracter in texto_valor:
+        if caracter not in "0123456789-":
+            valor_es_numero = False
+    padre_es_numero = True
+    for caracter in texto_padre:
+        if caracter not in "0123456789-":
+            padre_es_numero = False
+    
+    if valor_es_numero and padre_es_numero:
+        mi_arbol.insertar(int(texto_valor), int(texto_padre))
+    else:
+        print("Error: numeros")
 
-
-if __name__ == "__main__":
-    main()
+print("\nResultados:")
+print("a) Peso:", mi_arbol.peso())
+print("b) Orden:", mi_arbol.orden())
+print("c) Altura:", mi_arbol.altura())
