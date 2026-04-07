@@ -47,16 +47,16 @@ Supongamos que tenemos el texto: "AAABBC"
 
 ## Ventajas
 
-✅ **Compresión eficiente**: Reduce significativamente el tamaño de archivos  
-✅ **Óptimo**: Genera códigos de longitud mínima  
-✅ **Rápido**: O(n log n) en tiempo de construcción  
-✅ **Sin pérdida**: Permite recuperar los datos originales perfectamente  
+**Compresión eficiente**: Reduce significativamente el tamaño de archivos  
+**Óptimo**: Genera códigos de longitud mínima  
+**Rápido**: O(n log n) en tiempo de construcción  
+ **Sin pérdida**: Permite recuperar los datos originales perfectamente  
 
 ## Desventajas
 
-❌ Requiere conocer las frecuencias previas de los símbolos  
-❌ Debe transmitir el árbol junto con los datos comprimidos  
-❌ No es óptimo para todos los tipos de datos  
+ Requiere conocer las frecuencias previas de los símbolos  
+ Debe transmitir el árbol junto con los datos comprimidos  
+ No es óptimo para todos los tipos de datos  
 
 ## Aplicaciones Prácticas
 
